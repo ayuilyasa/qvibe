@@ -12,19 +12,13 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const router = useRouter();
 
   const { data: session, isPending } = authClient.useSession();
 
   useEffect(() => {
-    if (!isPending) {
-      if (!session || (session.user as any).role !== 'admin') {
-        setIsAdmin(false);
-        router.push("/");
-      } else {
-        setIsAdmin(true);
-      }
+    if (!isPending && session && (session.user as any).role !== 'admin') {
+      router.push("/");
     }
   }, [session, isPending, router]);
 
@@ -46,14 +40,18 @@ export default function RegisterPage() {
       setError(error.message || "Gagal mendaftar");
     } else {
       alert("Pendaftaran berhasil!");
-      setUsername("");
-      setPassword("");
+      if (!session) {
+        router.push("/login");
+      } else {
+        setUsername("");
+        setPassword("");
+      }
     }
     setLoading(false);
   };
 
-  if (isPending || isAdmin === null) return <div className="p-8 text-center text-gray-500">Memuat...</div>;
-  if (isAdmin === false) return null;
+  if (isPending) return <div className="p-8 text-center text-gray-500">Memuat...</div>;
+  if (session && (session.user as any).role !== 'admin') return null;
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
@@ -61,7 +59,7 @@ export default function RegisterPage() {
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900">Daftar Akun Baru</h2>
           <p className="mt-2 text-sm text-gray-600">
-            Daftarkan akun untuk siswa.
+            Daftarkan akun anda sekarang.
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleRegister}>
