@@ -1,4 +1,4 @@
-# Product Requirements Document (PRD) - Q-Vibe (Quranic virtue and interactive education system)
+# Product Requirements Document (PRD) - Q-Vibe (Quranic-Video, Interaktif, Belajar, Efektif)
 
 ## 1. Project Overview
 Q-Vibe is a video-sharing platform focused on Islamic educational content for elementary students. It allows teachers (admins) to share and curate YouTube videos while students can discover them in a safe environment.

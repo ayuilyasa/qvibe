@@ -36,7 +36,7 @@ export default async function RootLayout({
               <div className="flex items-center gap-8">
                 <div className="flex-shrink-0 flex flex-col">
                   <a href="/" className="text-2xl font-bold text-primary leading-tight">Q-Vibe</a>
-                  <span className="text-[10px] text-gray-500 font-medium leading-tight">Quranic virtue and interactive education system</span>
+                  <span className="text-[10px] text-gray-500 font-medium leading-tight">Quranic-Video, Interaktif, Belajar, Efektif</span>
                 </div>
                 <a href="/pengunjung" className="text-sm font-medium text-gray-600 hover:text-primary">Daftar Pengunjung</a>
               </div>
