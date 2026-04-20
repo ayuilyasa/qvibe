@@ -12,7 +12,7 @@ async function checkAdmin() {
         headers: await headers(),
     });
 
-    if (!session || (session.user as any).role !== 'admin') {
+    if (!session || (session.user as unknown as { role: string }).role !== 'admin') {
         throw new Error("Unauthorized: Only admins can perform this action");
     }
     return session;

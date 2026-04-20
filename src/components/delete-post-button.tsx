@@ -15,7 +15,7 @@ export function DeletePostButton({ postId, onDelete }: { postId: string, onDelet
         try {
             await onDelete(postId);
             router.refresh();
-        } catch (error) {
+        } catch {
             alert("Gagal menghapus postingan");
         } finally {
             setLoading(false);

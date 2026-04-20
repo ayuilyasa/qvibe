@@ -1,10 +1,8 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
 
-export function AuthNav({ session }: { session: any }) {
-    const router = useRouter();
+export function AuthNav({ session }: { session: { user: { name: string, role: string } } | null }) {
 
     const handleSignOut = async () => {
         try {
@@ -19,7 +17,7 @@ export function AuthNav({ session }: { session: any }) {
     if (session) {
         return (
             <div className="flex items-center gap-4">
-                {(session.user as any).role === 'admin' && (
+                {session.user.role === 'admin' && (
                     <>
                         <a href="/pengunjung" className="text-sm font-medium text-primary hover:underline">Daftar Pengunjung</a>
                         <a href="/add-worksheet" className="text-sm font-medium text-primary hover:underline">Kelola Worksheet</a>

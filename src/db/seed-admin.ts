@@ -27,7 +27,7 @@ async function seedAdmin() {
             },
         });
         console.log("Admin account created.");
-    } catch (e) {
+    } catch {
         console.log("Admin account already exists or another error occurred. Proceeding to update role...");
     }
 

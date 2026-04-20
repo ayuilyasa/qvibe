@@ -8,7 +8,7 @@ export default async function WorksheetPage() {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
-    const isAdmin = session?.user && (session.user as any).role === 'admin';
+    const isAdmin = !!(session?.user && (session.user as unknown as { role: string }).role === 'admin');
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

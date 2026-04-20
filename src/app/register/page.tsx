@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
@@ -17,7 +16,7 @@ export default function RegisterPage() {
   const { data: session, isPending } = authClient.useSession();
 
   useEffect(() => {
-    if (!isPending && session && (session.user as any).role !== 'admin') {
+    if (!isPending && session && (session.user as { role?: string }).role !== 'admin') {
       router.push("/");
     }
   }, [session, isPending, router]);
@@ -51,7 +50,7 @@ export default function RegisterPage() {
   };
 
   if (isPending) return <div className="p-8 text-center text-gray-500">Memuat...</div>;
-  if (session && (session.user as any).role !== 'admin') return null;
+  if (session && (session.user as { role?: string }).role !== 'admin') return null;
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">

@@ -12,22 +12,32 @@ import {
 } from "@/app/actions/worksheet";
 import Link from "next/link";
 
+interface Category {
+    id: string;
+    name: string;
+}
+
+interface WorksheetInput {
+    title: string;
+    driveUrl: string;
+}
+
 export default function ManageWorksheetPage() {
     const router = useRouter();
     const { data: session, isPending } = authClient.useSession();
     const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
     
-    const [categories, setCategories] = useState<any[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
     const [newCategoryName, setNewCategoryName] = useState("");
-    const [editingCategory, setEditingCategory] = useState<{id: string, name: string} | null>(null);
+    const [editingCategory, setEditingCategory] = useState<Category | null>(null);
     
     const [selectedCategoryId, setSelectedCategoryId] = useState("");
-    const [worksheetInputs, setWorksheetInputs] = useState([{ title: "", driveUrl: "" }]);
+    const [worksheetInputs, setWorksheetInputs] = useState<WorksheetInput[]>([{ title: "", driveUrl: "" }]);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         if (!isPending) {
-            if (!session || (session.user as any).role !== 'admin') {
+            if (!session || (session.user as unknown as { role: string }).role !== 'admin') {
                 setIsAdmin(false);
                 router.push("/");
             } else {
@@ -76,9 +86,9 @@ export default function ManageWorksheetPage() {
         setWorksheetInputs(newInputs);
     };
 
-    const handleWorksheetInputChange = (index: number, field: string, value: string) => {
+    const handleWorksheetInputChange = (index: number, field: keyof WorksheetInput, value: string) => {
         const newInputs = [...worksheetInputs];
-        (newInputs[index] as any)[field] = value;
+        newInputs[index][field] = value;
         setWorksheetInputs(newInputs);
     };
 
@@ -145,7 +155,7 @@ export default function ManageWorksheetPage() {
                                                 <input
                                                     type="text"
                                                     value={editingCategory.name}
-                                                    onChange={(e) => setEditingCategory({...editingCategory, name: e.target.value})}
+                                                    onChange={(e) => setEditingCategory(prev => prev ? { ...prev, name: e.target.value } : null)}
                                                     className="flex-1 px-2 py-1 border rounded text-sm outline-none focus:ring-1 focus:ring-primary"
                                                     autoFocus
                                                 />

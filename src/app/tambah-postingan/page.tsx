@@ -24,7 +24,7 @@ export default function AddPostPage() {
 
   useEffect(() => {
     if (!isPending) {
-      if (!session || (session.user as any).role !== 'admin') {
+      if (!session || (session.user as unknown as { role: string }).role !== 'admin') {
         setIsAdmin(false);
         router.push("/");
       } else {

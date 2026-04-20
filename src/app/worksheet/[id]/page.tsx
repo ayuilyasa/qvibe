@@ -42,7 +42,7 @@ export default async function WorksheetListPage({
     const session = await auth.api.getSession({
         headers: await headers(),
     });
-    const isAdmin = session?.user && (session.user as any).role === 'admin';
+    const isAdmin = !!(session?.user && (session.user as unknown as { role: string }).role === 'admin');
 
     const currentPage = parseInt(page || "1", 10);
     const searchQuery = q || "";
@@ -90,7 +90,7 @@ export default async function WorksheetListPage({
                 </div>
                 {searchQuery && (
                     <p className="mt-3 text-sm text-gray-500">
-                        Menampilkan hasil pencarian untuk: <span className="font-semibold">"{searchQuery}"</span>
+                        Menampilkan hasil pencarian untuk: <span className="font-semibold">&quot;{searchQuery}&quot;</span>
                         <Link href={`/worksheet/${id}`} className="ml-2 text-primary hover:underline">Hapus pencarian</Link>
                     </p>
                 )}

@@ -47,7 +47,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </Link>
           <h1 className="text-3xl font-bold">{category.name}</h1>
         </div>
-        {(session?.user as any)?.role === 'admin' && (
+        {(session?.user as unknown as { role: string } | undefined)?.role === 'admin' && (
           <Link 
             href="/tambah-postingan" 
             className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90"
@@ -82,7 +82,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                 </div>
                 <div className="p-4 flex justify-between items-start">
                   <h3 className="text-lg font-semibold">{post.title}</h3>
-                  {(session?.user as any)?.role === 'admin' && (
+                  {(session?.user as unknown as { role: string } | undefined)?.role === 'admin' && (
                     <DeletePostButton postId={post.id} onDelete={deletePost} />
                   )}
                 </div>

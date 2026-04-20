@@ -12,7 +12,7 @@ export async function createPost(formData: FormData) {
         headers: await headers(),
     });
 
-    if (!session || (session.user as any).role !== 'admin') {
+    if (!session || (session.user as unknown as { role: string }).role !== 'admin') {
         throw new Error("Unauthorized: Only admins can create posts");
     }
 
@@ -36,7 +36,7 @@ export async function deletePost(postId: string) {
         headers: await headers(),
     });
 
-    if (!session || (session.user as any).role !== 'admin') {
+    if (!session || (session.user as unknown as { role: string }).role !== 'admin') {
         throw new Error("Unauthorized: Only admins can delete posts");
     }
 

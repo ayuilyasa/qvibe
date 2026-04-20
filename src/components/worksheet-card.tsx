@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Eye } from "lucide-react";
+import Image from "next/image";
 
 interface WorksheetCardProps {
     title: string;
@@ -36,9 +37,12 @@ export function WorksheetCard({
                     ></iframe>
                 ) : (
                     <>
-                        <img 
+                        <Image 
                             src={thumbnailUrl} 
                             alt={title} 
+                            width={1000}
+                            height={562}
+                            unoptimized
                             className="w-full h-full object-cover filter blur-[1px] opacity-60 group-hover:blur-0 group-hover:opacity-100 transition-all duration-300"
                         />
                         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/5 group-hover:bg-black/10 transition-colors">
