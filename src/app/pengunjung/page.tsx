@@ -17,7 +17,7 @@ export default async function VisitorsPage() {
   }
 
   const visitorLogs = await db
-...
+    .select({
       id: visitors.id,
       name: user.name,
       email: user.email,
