@@ -63,3 +63,17 @@ export const visitors = sqliteTable("visitors", {
   userAgent: text("user_agent"),
   accessedAt: integer("accessed_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
 });
+
+export const worksheetCategories = sqliteTable("worksheet_categories", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+});
+
+export const worksheets = sqliteTable("worksheets", {
+  id: text("id").primaryKey(),
+  categoryId: text("category_id").notNull().references(() => worksheetCategories.id, { onDelete: 'cascade' }),
+  title: text("title").notNull(),
+  driveUrl: text("drive_url").notNull(),
+  createdAt: integer("created_at", { mode: "timestamp" }).notNull().$defaultFn(() => new Date()),
+});
