@@ -38,7 +38,6 @@ export default async function RootLayout({
                   <a href="/" className="text-2xl font-bold text-primary leading-tight">Q-Vibe</a>
                   <span className="text-[10px] text-gray-500 font-medium leading-tight">Quranic-Video, Interaktif, Belajar, Efektif</span>
                 </div>
-                <a href="/pengunjung" className="text-sm font-medium text-gray-600 hover:text-primary">Daftar Pengunjung</a>
               </div>
               <AuthNav session={session} />
             </div>
