@@ -24,6 +24,21 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+        <Link
+          href="/worksheet"
+          className="group relative bg-white border rounded-2xl p-6 hover:shadow-lg transition-shadow border-primary/50"
+        >
+          <div className="text-4xl mb-4">📝</div>
+          <h3 className="text-lg font-semibold text-gray-900">
+            Worksheet
+          </h3>
+          <p className="mt-2 text-sm text-gray-500">
+            Download materi belajar dan lembar kerja PDF
+          </p>
+          <div className="mt-4 flex items-center text-sm font-medium text-primary group-hover:underline">
+            Jelajahi Sekarang &rarr;
+          </div>
+        </Link>
         {categories.map((category) => (
           <Link
             key={category.slug}

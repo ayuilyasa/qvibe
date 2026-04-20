@@ -20,7 +20,11 @@ export function AuthNav({ session }: { session: any }) {
         return (
             <div className="flex items-center gap-4">
                 {(session.user as any).role === 'admin' && (
-                    <a href="/register" className="text-sm font-medium text-primary hover:underline">Daftar Akun</a>
+                    <>
+                        <a href="/pengunjung" className="text-sm font-medium text-primary hover:underline">Daftar Pengunjung</a>
+                        <a href="/add-worksheet" className="text-sm font-medium text-primary hover:underline">Kelola Worksheet</a>
+                        <a href="/register" className="text-sm font-medium text-primary hover:underline">Daftar Akun</a>
+                    </>
                 )}
                 <span className="text-sm text-gray-600">Halo, {session.user.name}</span>
                 <button 

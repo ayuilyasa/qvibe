@@ -1,12 +1,23 @@
 import { db } from "@/db";
 import { visitors, user } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
 export default async function VisitorsPage() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session || (session.user as any).role !== 'admin') {
+    redirect("/");
+  }
+
   const visitorLogs = await db
-    .select({
+...
       id: visitors.id,
       name: user.name,
       email: user.email,
