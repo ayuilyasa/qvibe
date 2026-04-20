@@ -24,7 +24,8 @@ We will introduce two new tables in `src/db/schema.ts`:
 - **Worksheet Actions:**
   - `createWorksheets(categoryId, worksheets: {title: string, driveUrl: string}[])`: Accepts an array of objects containing title and Google Drive URL and a category ID, inserting multiple records into `worksheets`.
   - `getWorksheetCategories()`: Fetches all categories.
-  - `getWorksheetsByCategory(categoryId)`: Fetches worksheets for a specific category ID.
+  - `getWorksheetsByCategory(categoryId, searchQuery, page, limit)`: Fetches worksheets for a specific category ID with search and pagination (default 30 per page).
+  - `getWorksheetsCountByCategory(categoryId, searchQuery)`: Returns the total count of worksheets for pagination.
 
 ## 4. Frontend Implementation
 ### 4.1. Homepage (`src/app/page.tsx`)
@@ -37,7 +38,9 @@ We will introduce two new tables in `src/db/schema.ts`:
 ### 4.3. Worksheet Listing (`src/app/worksheet/[id]/page.tsx`)
 - Server component that fetches worksheets for the given category.
 - Renders worksheets in a **2-column grid layout** (on desktop) to match the "materi" video listing style.
-- Each card contains the `title`, an embedded iframe, and a download button.
+- **Search Bar:** Integrated at the top to filter worksheets by title using a `LIKE` query.
+- **Pagination:** Bottom navigation for switching pages (30 items per page).
+- Each card contains the `title`, a lazy-loaded iframe (loads on click), and a download button.
 - **URL Transformation:** Transform standard Drive URLs (`https://drive.google.com/file/d/ID/view`) to embed URLs (`https://drive.google.com/file/d/ID/preview`) before passing to the `<iframe>`.
 
 ### 4.4. Admin Management UI (`src/app/add-worksheet/page.tsx` or similar admin route)

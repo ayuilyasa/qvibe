@@ -4,7 +4,7 @@ import { db } from "@/db";
 import { worksheetCategories, worksheets } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { eq } from "drizzle-orm";
+import { eq, like, and, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 async function checkAdmin() {
@@ -69,11 +69,36 @@ export async function getWorksheetCategories() {
     });
 }
 
-export async function getWorksheetsByCategory(categoryId: string) {
+export async function getWorksheetsByCategory(
+    categoryId: string, 
+    searchQuery?: string, 
+    page: number = 1, 
+    limit: number = 30
+) {
+    const offset = (page - 1) * limit;
+    
     return await db.query.worksheets.findMany({
-        where: (worksheets, { eq }) => eq(worksheets.categoryId, categoryId),
+        where: (worksheets, { eq, and, like }) => {
+            const conditions = [eq(worksheets.categoryId, categoryId)];
+            if (searchQuery) {
+                conditions.push(like(worksheets.title, `%${searchQuery}%`));
+            }
+            return and(...conditions);
+        },
         orderBy: (worksheets, { desc }) => [desc(worksheets.createdAt)],
+        limit,
+        offset,
     });
+}
+
+export async function getWorksheetsCountByCategory(categoryId: string, searchQuery?: string) {
+    const result = await db.select({ count: sql<number>`count(*)` })
+        .from(worksheets)
+        .where(and(
+            eq(worksheets.categoryId, categoryId),
+            searchQuery ? like(worksheets.title, `%${searchQuery}%`) : undefined
+        ));
+    return result[0].count;
 }
 
 export async function getWorksheetCategoryById(id: string) {
