@@ -43,7 +43,7 @@ export default function RegisterPage() {
       email: dummyEmail,
       password,
       name: username,
-      // @ts-ignore - city and province are added as additional fields
+      // @ts-expect-error - city and province are added as additional fields
       city,
       province,
     });
