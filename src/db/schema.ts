@@ -9,6 +9,8 @@ export const user = sqliteTable("user", {
 	createdAt: integer('createdAt', { mode: 'timestamp' }).notNull(),
 	updatedAt: integer('updatedAt', { mode: 'timestamp' }).notNull(),
 	role: text('role').$default(() => 'user'),
+	city: text('city'),
+	province: text('province'),
 });
 
 export const session = sqliteTable("session", {

@@ -17,6 +17,14 @@ export const auth = betterAuth({
                 type: "string",
                 defaultValue: "user",
             },
+            city: {
+                type: "string",
+                required: false,
+            },
+            province: {
+                type: "string",
+                required: false,
+            },
         },
     },
     baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3000",
