@@ -15,16 +15,14 @@ const categories = [
 ];
 
 const backgroundImages = [
-  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop", // Learning
-  "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop", // Books
-  "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop", // School
-  "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=800&auto=format&fit=crop", // Kids playing
-  "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop", // Yoga/Peace
-  "https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=800&auto=format&fit=crop", // Study
-  "https://images.unsplash.com/photo-1491843351663-8cb898682417?q=80&w=800&auto=format&fit=crop", // Library
-  "https://images.unsplash.com/photo-1510172951991-856a654063f9?q=80&w=800&auto=format&fit=crop", // Reading
-  "https://images.unsplash.com/photo-1472162072942-cd5173781a27?q=80&w=800&auto=format&fit=crop", // Kids art
-  "https://images.unsplash.com/photo-1519337265831-281ec6cc8514?q=80&w=800&auto=format&fit=crop", // Drawing
+  "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?q=80&w=800&auto=format&fit=crop", // Quran
+  "https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=800&auto=format&fit=crop", // Islamic Art
+  "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?q=80&w=800&auto=format&fit=crop", // Islamic Pattern
+  "https://images.unsplash.com/photo-1767555712347-2089d178685a?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1676928117296-66bc2882ec6a?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1642575688958-24ee4c5aba9b?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1582033130049-90d7592583b4?q=80&w=800&auto=format&fit=crop"
 ];
 
 export default async function Home() {
@@ -42,10 +40,10 @@ export default async function Home() {
         <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-black">
           Q-VIBE
         </h1>
-        
+
         <p className="max-w-4xl mx-auto text-lg md:text-xl text-gray-600 leading-relaxed font-medium">
-          Platform edukasi terintegrasi yang menyajikan video pembelajaran agama, dongeng anak, 
-          dan berbagai worksheet interaktif siap cetak untuk mendukung belajar mandiri yang 
+          Platform edukasi terintegrasi yang menyajikan video pembelajaran agama, dongeng anak,
+          dan berbagai worksheet interaktif siap cetak untuk mendukung belajar mandiri yang
           efektif, kreatif, inovatif dan menyenangkan.
         </p>
 
@@ -64,7 +62,7 @@ export default async function Home() {
           href="/worksheet"
           className="group relative overflow-hidden rounded-2xl h-64 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-primary/20"
         >
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
             style={{ backgroundImage: `url(${backgroundImages[0]})` }}
           />
@@ -86,7 +84,7 @@ export default async function Home() {
             href={`/kategori/${category.slug}`}
             className="group relative overflow-hidden rounded-2xl h-64 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200"
           >
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
               style={{ backgroundImage: `url(${backgroundImages[(index + 1) % backgroundImages.length]})` }}
             />
@@ -124,11 +122,11 @@ function LandingPage() {
         <h2 className="text-3xl md:text-5xl font-bold text-gray-800 tracking-tight animate-fade-in-up opacity-0">
           Selamat Datang di Aplikasi
         </h2>
-        
+
         <h1 className="text-8xl md:text-[12rem] font-black leading-none tracking-tighter mb-4 text-black flex justify-center">
           {"Q- VIBE".split("").map((char, i) => (
-            <span 
-              key={i} 
+            <span
+              key={i}
               className={`inline-block animate-jump ${char === " " ? "w-[0.3em]" : ""}`}
               style={{ animationDelay: `${i * 150}ms` }}
             >
@@ -145,14 +143,14 @@ function LandingPage() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center mt-16 animate-fade-in-up opacity-0 [animation-delay:600ms]">
-          <Link 
-            href="/login" 
+          <Link
+            href="/login"
             className="px-12 py-5 bg-primary text-white font-black rounded-2xl text-2xl hover:bg-primary/90 transition-all shadow-[0_10px_0_0_rgba(0,0,0,0.1)] hover:translate-y-1 hover:shadow-none"
           >
             Masuk (Login)
           </Link>
-          <Link 
-            href="/register" 
+          <Link
+            href="/register"
             className="px-12 py-5 bg-white text-primary font-black rounded-2xl text-2xl hover:bg-gray-50 transition-all shadow-[0_10px_0_0_rgba(0,0,0,0.1)] hover:translate-y-1 hover:shadow-none border-2 border-primary/10"
           >
             Daftar (Register)
