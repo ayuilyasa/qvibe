@@ -137,7 +137,7 @@ function LandingPage() {
 
         <div className="animate-fade-in-up opacity-0 [animation-delay:400ms] mt-8">
           <p className="text-xl md:text-4xl font-bold text-gray-800 italic">
-            "Tumbuh Cerdas dengan Ilmu, Dongeng, dan Worksheet Kreatif"
+            &quot;Tumbuh Cerdas dengan Ilmu, Dongeng, dan Worksheet Kreatif&quot;
           </p>
         </div>
 
